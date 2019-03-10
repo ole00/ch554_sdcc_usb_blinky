@@ -53,7 +53,6 @@
 //see usb1.1 page 183: value bitmap: Device->Host, Vendor request, Sender is interface
 #define TYPE_IN_ITF		(0x41 | (1 << 7))
 
-
 #define COMMAND_TOGGLE_BLINK  0xD1
 #define COMMAND_READ_BLINK_TIME 0xD0
 #define COMMAND_SET_BLINK_TIME 0xD3
@@ -63,14 +62,10 @@
 #define ACTION_PRINT_HELP			1
 #define ACTION_SET_VERBOSE			2
 
-
-
 static uint8_t descriptor[256];
 
 static uint8_t outBuf[32]; //output (command) buffer
 static uint8_t resBuf[32]; //input (response) buffer
-
-static uint8_t arvicCmd[516]; // //output (command) buffer
 
 static const char *const strings[2] = { "info", "fatal" };
 
@@ -162,7 +157,6 @@ static int dumpBuffer(uint8_t* buf, int size) {
 	return 0;
 } 
 
-
 static int sendControlTransfer(libusb_device_handle *h, uint8_t command, uint16_t param1, uint16_t param2, uint8_t len) {
 	int ret;
 
@@ -184,7 +178,6 @@ static int recvControlTransfer(libusb_device_handle *h, uint8_t command) {
 	}
     return ret;
 }
-
 
 //try to find the blinky usb device
 static libusb_device_handle* getDeviceHandle(libusb_context* c) {
@@ -228,7 +221,6 @@ static libusb_device_handle* getDeviceHandle(libusb_context* c) {
 		info("using device: %i \n", device_index);
 	}
 
-
 	ret = libusb_open(dev_list[device_index], &handle);
 	if (verbose) {
 		info("open device result=%i\n", ret);
@@ -240,7 +232,6 @@ static libusb_device_handle* getDeviceHandle(libusb_context* c) {
 
 	libusb_free_device_list(dev_list, 1);
 
-
 	//get config
 	ret = libusb_get_descriptor(handle, LIBUSB_DT_DEVICE, 0, descriptor, 18);
 	if (verbose) {
@@ -251,7 +242,6 @@ static libusb_device_handle* getDeviceHandle(libusb_context* c) {
 		info("get device configuration 0 result=%i\n", ret);
 	}
     usleep(20*1000);
-
 
 	return handle;
 }
