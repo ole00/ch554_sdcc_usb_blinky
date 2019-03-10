@@ -4,11 +4,11 @@ This is a demo Blinky project for CH55x MCU. It's based on ch554_sdcc sdk (https
 
 Features:
 
-- setup GPIO and control LED 
-- setup custom USB device on CH55x MCU
-- handle custom USB data transfers, in both directions (from and to the MCU)
-- enter the bootloader triggered via USB 
-- PC Host controller programm for communicating with the MCU over USB
+- setups GPIO and controls LED 
+- setups custom USB device on CH55x MCU
+- handles custom USB data transfers, in both directions (from and to the MCU)
+- enters the bootloader triggered via USB control transfer
+- contains PC Host program for communicating with the MCU over USB
 
 
 The goal of this demo project was to improve the USB handling code, which - at the point
@@ -16,7 +16,7 @@ of writing - was hard to maintain and not very practical for beginners to reuse 
 projects. This code separates the common USB code into its own source file, which - in 
 theory - does not need to be changed and should work straight away. The customistaion 
 of the USB code is done via preprocessor variables which can be defined in the main.c
-program, or if they are undefined, a valid placeholder is used.
+program, or if they are undefined, a default placeholder is used.
 
 The customisable options are:
 
@@ -24,7 +24,7 @@ The customisable options are:
 - vendor and product ids
 - vendor and product names
 - device power consumption
-- usb spped (Low speed / Full speed)
+- USB speed (Low speed / Full speed)
 - number of endpoints (optional)
 - endpoint definitions (optional)
 - control transfer data hanndler for endpoint0 (optional)
