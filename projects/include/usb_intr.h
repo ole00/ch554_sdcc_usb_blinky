@@ -365,7 +365,7 @@ void DeviceInterrupt(void) __interrupt (INT_NO_USB)					   //USB interrupt servi
 						{
 							UsbIntrSetupLen = len;	//Limit total length
 						}
-						len = UsbIntrSetupLen >= DEFAULT_ENDP0_SIZE ? DEFAULT_ENDP0_SIZE : UsbIntrSetupLen;							//This transmission length
+						len = UsbIntrSetupLen >= EP0_BUFF_SIZE ? EP0_BUFF_SIZE : UsbIntrSetupLen;							//This transmission length
 						memcpy(Ep0Buffer,UsbIntrDescr,len);								  //copy upload data
 						UsbIntrSetupLen -= len;
 						UsbIntrDescr += len;
@@ -563,7 +563,7 @@ void DeviceInterrupt(void) __interrupt (INT_NO_USB)					   //USB interrupt servi
 				UsbIntrSetupReq = 0xFF;
 				UEP0_CTRL = bUEP_R_TOG | bUEP_T_TOG | UEP_R_RES_STALL | UEP_T_RES_STALL;//STALL
 			}
-			else if(len <= DEFAULT_ENDP0_SIZE)				//Upload data or status stage returns 0 length package
+			else if(len <= EP0_BUFF_SIZE)				//Upload data or status stage returns 0 length package
 			{
 				UEP0_T_LEN = len;
 				UEP0_CTRL = bUEP_R_TOG | bUEP_T_TOG | UEP_R_RES_ACK | UEP_T_RES_ACK;//The default packet is DATA1, which returns a response ACK.
@@ -582,7 +582,7 @@ void DeviceInterrupt(void) __interrupt (INT_NO_USB)					   //USB interrupt servi
 			switch(UsbIntrSetupReq)
 			{
 			case USB_GET_DESCRIPTOR:
-				len = UsbIntrSetupLen >= DEFAULT_ENDP0_SIZE ? DEFAULT_ENDP0_SIZE : UsbIntrSetupLen;								 //This transmission length
+				len = UsbIntrSetupLen >= EP0_BUFF_SIZE ? EP0_BUFF_SIZE : UsbIntrSetupLen;								 //This transmission length
 				memcpy( Ep0Buffer, UsbIntrDescr, len );								   //set output data
 				UsbIntrSetupLen -= len;
 				UsbIntrDescr += len;
