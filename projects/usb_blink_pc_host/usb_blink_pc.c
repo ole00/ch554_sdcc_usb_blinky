@@ -115,7 +115,7 @@ int blinkTime = 0;
 static void infoAndFatal(const int s, char *f, ...) {
     va_list ap;
     va_start(ap,f);
-    fprintf(stderr, "arvic-usb: %s: ", strings[s]);
+    fprintf(stderr, "usb_blink_pc: %s: ", strings[s]);
     vfprintf(stderr, f, ap);
     va_end(ap);
     if (s) exit(s);
@@ -128,14 +128,13 @@ static void usage(void) {
     info("\n"
     "*** [usb-blink] **************************************************\n"
     "command line tool for testing CH55x blink demo\n"
-    "ver. 0.1 \n"
+    "ver. 0.1.1 \n"
     "***************************************************************\n"
     "usage: [sudo] usb-blink command [parameter]\n"
     "commands:\n"
     "  -h     : prints this help \n"
     "  -v     : set verbose mode \n"
     "  -debug : print USB library debugging info \n"
-    "  -pc    : print device configuration \n"
     "  -boot  : reset the CH55x into bootloader mode \n"
     "  -w ms  : send the blink time in milliseconds to the device\n"
     "  -r     : read the current blink time from the device\n"
