@@ -21,7 +21,6 @@
 * USB_CUST_VENDOR_ID: user defined Vendor name
 *******************************************************************************/
 #ifndef USB_CUST_VENDOR_NAME
-//#define USB_CUST_VENDOR_NAME {'C','H','5','5','x', 0}
 #define USB_CUST_VENDOR_NAME u"CH55x"
 #endif
 
@@ -183,8 +182,7 @@ __code struct {uint8_t bLength; uint8_t bDscType; uint16_t string[1];} sd000 =
     {0x0409}
 };
 
-//__code struct {uint8_t bLength; uint8_t bDscType; uint16_t string[sizeof(USB_CUST_VENDOR_NAME)/2 -1];} sd001 = {
-__code struct {uint8_t bLength; uint8_t bDscType; uint16_t string[sizeof(u"CH55x")/2 -1];} sd001 = {
+__code struct {uint8_t bLength; uint8_t bDscType; uint16_t string[sizeof(USB_CUST_VENDOR_NAME)/2 -1];} sd001 = {
     sizeof(sd001), USB_DESC_STR,
     USB_CUST_VENDOR_NAME
 };
