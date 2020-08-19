@@ -21,8 +21,8 @@
 
 #define USB_CUST_PRODUCT_ID                 0x001e
 #define USB_CUST_CONF_POWER                 120
-#define USB_CUST_PRODUCT_NAME_LEN           7
-#define USB_CUST_PRODUCT_NAME               { 'B', 'l', 'i', 'n', 'k', 'y', 0 }
+//#define USB_CUST_PRODUCT_NAME               { 'B', 'l', 'i', 'n', 'k', 'y', 0 }
+#define USB_CUST_PRODUCT_NAME               u"Blinky"
 #define USB_CUST_CONTROL_TRANSFER_HANDLER   handleVendorControlTransfer()
 #define USB_CUST_CONTROL_DATA_HANDLER       handleVendorDataTransfer()
 

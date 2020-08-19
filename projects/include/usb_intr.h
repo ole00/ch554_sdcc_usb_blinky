@@ -21,8 +21,7 @@
 * USB_CUST_VENDOR_ID: user defined Vendor name
 *******************************************************************************/
 #ifndef USB_CUST_VENDOR_NAME
-#define USB_CUST_VENDOR_NAME_LEN 6
-#define USB_CUST_VENDOR_NAME {'C','H','5','5','x', 0}
+#define USB_CUST_VENDOR_NAME u"CH55x"
 #endif
 
 /*******************************************************************************
@@ -36,8 +35,8 @@
 * USB_CUST_VENDOR_ID: user defined Product name
 *******************************************************************************/
 #ifndef USB_CUST_PRODUCT_NAME
-#define USB_CUST_PRODUCT_NAME_LEN 11
-#define USB_CUST_PRODUCT_NAME {'C','o','o','l','_', 'b', 'o', 'a', 'r', 'd', 0}
+//#define USB_CUST_PRODUCT_NAME {'C','o','o','l','_', 'b', 'o', 'a', 'r', 'd', 0}
+#define USB_CUST_PRODUCT_NAME u"Cool_board"
 #endif
 
 /*******************************************************************************
@@ -176,18 +175,19 @@ __code CFG01 =
 };
 
 /* String descriptors */
+/* language 0409 = US English */
 __code struct {uint8_t bLength; uint8_t bDscType; uint16_t string[1];} sd000 =
 {
     sizeof(sd000), USB_DESC_STR,
     {0x0409}
 };
 
-__code struct {uint8_t bLength; uint8_t bDscType; uint16_t string[USB_CUST_VENDOR_NAME_LEN];} sd001 = {
+__code struct {uint8_t bLength; uint8_t bDscType; uint16_t string[sizeof(USB_CUST_VENDOR_NAME)/2 -1];} sd001 = {
     sizeof(sd001), USB_DESC_STR,
     USB_CUST_VENDOR_NAME
 };
 
-__code struct {uint8_t bLength; uint8_t bDscType; uint16_t string[USB_CUST_PRODUCT_NAME_LEN];} sd002 = {
+__code struct {uint8_t bLength; uint8_t bDscType; uint16_t string[sizeof(USB_CUST_PRODUCT_NAME)/2 -1];} sd002 = {
     sizeof(sd002), USB_DESC_STR,
     USB_CUST_PRODUCT_NAME
 };
